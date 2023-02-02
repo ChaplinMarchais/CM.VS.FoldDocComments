@@ -1,15 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PackageManifest Version="2.0.0" xmlns="http://schemas.microsoft.com/developer/vsx-schema/2011" xmlns:d="http://schemas.microsoft.com/developer/vsx-schema-design/2011">
     <Metadata>
-        <Identity Id="CM.FoldDocComments.5be8d5f3-b006-4128-b342-54ed6658aeef" Version="1.0" Language="en-US" Publisher="Chaplin Marchais" />
-        <DisplayName>CM.FoldDocComments</DisplayName>
-        <Description xml:space="preserve">Empty VSIX Project.</Description>
+        <Identity Id="CM.FoldDocComments.5be8d5f3-b006-4128-b342-54ed6658aeef" Version="1.0.2" Language="en-US" Publisher="Chaplin Marchais" />
+        <DisplayName>CM.VS.FoldDocComments</DisplayName>
+        <Description xml:space="preserve">Visual Studio extension which provides commands to help work with documentation comments in a more streamlined fashion. This currently provides the ability to collapse and expand all documentation comments in the active file. More capabilities are in development currently.</Description>
+        <MoreInfo>https://github.com/ChaplinMarchais/CM.VS.FoldDocComments.git</MoreInfo>
+        <License>LICENSE.txt</License>
         <Icon>Resources\Icon.png</Icon>
         <PreviewImage>Resources\Icon.png</PreviewImage>
+        <Tags>Documentation,Comments,Collapse,Expand,Regions,Productivity,Code Quality,Cleaning,Readability,Quality of Life</Tags>
         <Preview>true</Preview>
     </Metadata>
     <Installation>
-        <InstallationTarget Id="Microsoft.VisualStudio.Community" Version="[17.0, 18.0)">
+        <InstallationTarget Id="Microsoft.VisualStudio.Community" Version="[17.0, )">
             <ProductArchitecture>amd64</ProductArchitecture>
         </InstallationTarget>
     </Installation>
@@ -18,6 +21,6 @@
     </Prerequisites>
     <Assets>
         <Asset Type="Microsoft.VisualStudio.VsPackage" d:Source="Project" d:ProjectName="%CurrentProject%" Path="|%CurrentProject%;PkgdefProjectOutputGroup|" />
-      <Asset Type="Microsoft.VisualStudio.MefComponent" d:Source="Project" d:ProjectName="%CurrentProject%" Path="|%CurrentProject%|" />
-  </Assets>
+        <Asset Type="Microsoft.VisualStudio.MefComponent" d:Source="Project" d:ProjectName="%CurrentProject%" Path="|%CurrentProject%|" />
+    </Assets>
 </PackageManifest>
