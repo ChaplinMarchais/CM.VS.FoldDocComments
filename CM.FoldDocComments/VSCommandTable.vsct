@@ -1,37 +1,49 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <CommandTable xmlns="http://schemas.microsoft.com/VisualStudio/2005-10-18/CommandTable" xmlns:xs="http://www.w3.org/2001/XMLSchema">
 
-  <Extern href="stdidcmd.h"/>
-  <Extern href="vsshlids.h"/>
-  <Include href="KnownImageIds.vsct"/>
-  <Include href="VSGlobals.vsct"/>
+    <Extern href="stdidcmd.h"/>
+    <Extern href="vsshlids.h"/>
+    <Include href="KnownImageIds.vsct"/>
+    <Include href="VSGlobals.vsct"/>
 
-  <Commands package="FoldDocComments">
-    <Groups>
-      <Group guid="FoldDocComments" id="CmMenuGroup" priority="0x0600">
-					<Parent guid="VSMainMenu" id="Edit"/>
-      </Group>
-    </Groups>
+    <Commands package="FoldDocCommentsCmdSet">
+		<Groups>
+			<Group guid="FoldDocCommentsCmdSet" id="FoldDocCommentsCmdGrp" priority="0x0106">
+				<Parent guid="VSEditor" id="Edit.LanguageInfoGroup.Outlining"/>
+			</Group>
+			<Group guid="FoldDocCommentsCmdSet" id="EditorContextGrp" priority="0x0206">
+                <Parent guid="guidSHLMainMenu" id="IDM_VS_CTXT_CODEWIN"/>
+			</Group>
+		</Groups>
+		
 
-    <!--This section defines the elements the user can interact with, like a menu command or a button
+        <!--This section defines the elements the user can interact with, like a menu command or a button
         or combo box in a toolbar. -->
-    <Buttons>
-      <Button guid="FoldDocComments" id="FoldDocCommentsCommand" priority="0x0100" type="Button">
-        <Parent guid="FoldDocComments" id="CmMenuGroup" />
-        <Icon guid="ImageCatalogGuid" id="StatusInformation" />
-        <CommandFlag>IconIsMoniker</CommandFlag>
-        <Strings>
-          <ButtonText>Fold Documentation Comments</ButtonText>
-          <LocCanonicalName>.FoldDocComments.FoldDocCommentsCommand</LocCanonicalName>
-        </Strings>
-      </Button>
-    </Buttons>
-  </Commands>
+        <Buttons>
+            <Button guid="FoldDocCommentsCmdSet" id="CollapseDocCommentsCommand" priority="0x0100" type="Button">
+						<Parent guid="FoldDocCommentsCmdSet" id="FoldDocCommentsCmdGrp"/>
+				<Icon guid="ImageCatalogGuid" id="HideCommentGroup"/>
+                <CommandFlag>IconIsMoniker</CommandFlag>
+                <Strings>
+                    <ButtonText>Collapse Documentation Comments</ButtonText>
+                    <LocCanonicalName>.FoldDocCommentsCmdSet.CollapseDocCommentsCommand</LocCanonicalName>
+                </Strings>
+            </Button>
+        </Buttons>
+    </Commands>
 
-  <Symbols>
-    <GuidSymbol name="FoldDocComments" value="{8df83ae3-4b19-42c9-9e22-7bef4f9eeee1}">
-      <IDSymbol name="CmMenuGroup" value="0x0001" />
-      <IDSymbol name="FoldDocCommentsCommand" value="0x0100" />
-    </GuidSymbol>
-  </Symbols>
+	<CommandPlacements>
+		<CommandPlacement guid="FoldDocCommentsCmdSet" id="CollapseDocCommentsCommand" priority="0x0105">
+			<Parent guid="FoldDocCommentsCmdSet" id="EditorContextGrp" />
+		</CommandPlacement>
+	</CommandPlacements>
+
+    <Symbols>
+        <GuidSymbol name="FoldDocCommentsCmdSet" value="{8df83ae3-4b19-42c9-9e22-7bef4f9eeee1}">
+			<IDSymbol name="FoldDocCommentsCmdGrp" value="0x0205" />
+			<IDSymbol name="EditorContextGrp" value="0x0204"/>
+			<IDSymbol name="MainMenuEditGrp" value="0x0205" />
+            <IDSymbol name="CollapseDocCommentsCommand" value="0x0102" />
+        </GuidSymbol>
+    </Symbols>
 </CommandTable>

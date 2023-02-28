@@ -12,15 +12,17 @@ namespace CM.FoldDocComments
     /// </summary>
     internal sealed partial class PackageGuids
     {
-        public const string FoldDocCommentsString = "8df83ae3-4b19-42c9-9e22-7bef4f9eeee1";
-        public static Guid FoldDocComments = new Guid(FoldDocCommentsString);
+        public const string FoldDocCommentsCmdSetString = "8df83ae3-4b19-42c9-9e22-7bef4f9eeee1";
+        public static Guid FoldDocCommentsCmdSet = new Guid(FoldDocCommentsCmdSetString);
     }
     /// <summary>
     /// Helper class that encapsulates all CommandIDs uses across VS Package.
     /// </summary>
     internal sealed partial class PackageIds
     {
-        public const int CmMenuGroup = 0x0001;
-        public const int FoldDocCommentsCommand = 0x0100;
+        public const int FoldDocCommentsCmdGrp = 0x0205;
+        public const int EditorContextGrp = 0x0204;
+        public const int MainMenuEditGrp = 0x0205;
+        public const int CollapseDocCommentsCommand = 0x0102;
     }
 }

@@ -1,14 +1,18 @@
 ﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
+using Community.VisualStudio.Toolkit;
 using EnvDTE;
 using Microsoft.VisualStudio.Text;
 using Microsoft.VisualStudio.Text.Outlining;
+using Microsoft.VisualStudio.Threading;
 
 namespace CM.FoldDocComments
 {
-	[Command(PackageIds.FoldDocCommentsCommand)]
-	internal sealed class FoldDocCommentsCommand : BaseCommand<FoldDocCommentsCommand>
+	[Command(PackageIds.CollapseDocCommentsCommand)]
+	internal sealed class CollapseDocCommentsCommand : BaseCommand<CollapseDocCommentsCommand>
 	{
 		protected override async Task ExecuteAsync(OleMenuCmdEventArgs e)
 		{
@@ -39,13 +43,11 @@ namespace CM.FoldDocComments
 			var allRegions = outliningManager.GetAllRegions(new SnapshotSpan(snapshot, 0, snapshot.Length)).ToList();
 
 			await DoWorkOnRegionsAsync(outliningManager, snapshot, allRegions);
-
-			await VS.MessageBox.ShowWarningAsync("CM.FoldDocComments", "FOLD THE DOC COMMENTS NAOW!");
 		}
 
 		private async Task<bool> DoWorkOnRegionsAsync(IOutliningManager manager, ITextSnapshot snapshot, IList<ICollapsible> allRegions)
 		{
-			Stack<ICollapsible> regionsToCollapse = new();
+			Queue<ICollapsible> regionsToCollapse = new Queue<ICollapsible>();
 
 			foreach (var region in allRegions)
 			{
@@ -65,22 +67,24 @@ namespace CM.FoldDocComments
 								break;
 						}
 
-						if (regionMatch)
-							regionsToCollapse.Push(region);
+				if (regionMatch)
+				{
+					regionsToCollapse.Enqueue(region);
+                }
 			}
 
-			var result = CollapseRegions(manager, regionsToCollapse);
+            var result = CollapseRegions(manager, regionsToCollapse);
 
-			return !result.Contains(false);
-		}
+            return !result.Contains(false);
+        }
 
-		private IEnumerable<bool> CollapseRegions(IOutliningManager manager, Stack<ICollapsible> regionsToCollapse)
+        private IEnumerable<bool> CollapseRegions(IOutliningManager manager, Queue<ICollapsible> regionsToCollapse)
 		{
 			while(regionsToCollapse.Count > 0)
 			{
 				bool result = new();
 
-				var region = regionsToCollapse.Pop();
+				var region = regionsToCollapse.Dequeue();
 				if (!region.IsCollapsed)
 				{
 					result = manager.TryCollapse(region) is ICollapsed;
