@@ -55,6 +55,8 @@
     <RegisterForComInterop>true</RegisterForComInterop>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Commands\ExpandDocCommentsCommand.cs" />
+    <Compile Include="Options\FoldDocCommentsOptionsPage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Commands\CollapseDocCommentsCommand.cs" />
     <Compile Include="FoldDocCommentsPackage.cs" />

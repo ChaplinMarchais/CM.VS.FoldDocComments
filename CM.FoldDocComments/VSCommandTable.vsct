@@ -29,11 +29,22 @@
                     <LocCanonicalName>.FoldDocCommentsCmdSet.CollapseDocCommentsCommand</LocCanonicalName>
                 </Strings>
             </Button>
+
+			<Button guid="FoldDocCommentsCmdSet" id="ExpandDocCommentsCommand" priority="0x0105" type="Button">
+				<Parent guid="FoldDocCommentsCmdSet" id="FoldDocCommentsCmdGrp"/>
+				<Strings>
+					<ButtonText>Expand Documentation Comments</ButtonText>
+					<LocCanonicalName>.FoldDocCommentsCmdSet.ExpandDocCommentsCommand</LocCanonicalName>
+				</Strings>
+			</Button>
         </Buttons>
     </Commands>
 
 	<CommandPlacements>
 		<CommandPlacement guid="FoldDocCommentsCmdSet" id="CollapseDocCommentsCommand" priority="0x0105">
+			<Parent guid="FoldDocCommentsCmdSet" id="EditorContextGrp" />
+		</CommandPlacement>
+		<CommandPlacement guid="FoldDocCommentsCmdSet" id="ExpandDocCommentsCommand" priority="0x0106">
 			<Parent guid="FoldDocCommentsCmdSet" id="EditorContextGrp" />
 		</CommandPlacement>
 	</CommandPlacements>
@@ -44,6 +55,7 @@
 			<IDSymbol name="EditorContextGrp" value="0x0204"/>
 			<IDSymbol name="MainMenuEditGrp" value="0x0205" />
             <IDSymbol name="CollapseDocCommentsCommand" value="0x0102" />
+			<IDSymbol name="ExpandDocCommentsCommand" value="0x0103" />
         </GuidSymbol>
     </Symbols>
 </CommandTable>

@@ -24,5 +24,6 @@ namespace CM.FoldDocComments
         public const int EditorContextGrp = 0x0204;
         public const int MainMenuEditGrp = 0x0205;
         public const int CollapseDocCommentsCommand = 0x0102;
+        public const int ExpandDocCommentsCommand = 0x0103;
     }
 }
